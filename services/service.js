@@ -5,7 +5,12 @@ class Service {
         this.mongoDB = new MongoLib();
     }
 
+    async getAll(collection) {
+        return this.mongoDB.getAll(collection);
+    }
+
     //TODO: CRUD Exercise
+    
 
     //TODO: CRUD ExerciseStats
 

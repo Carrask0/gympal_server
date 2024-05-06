@@ -1,0 +1,28 @@
+
+[
+    { "name": "Press de banca" },
+    { "name": "Sentadillas" },
+    { "name": "Peso muerto" },
+    { "name": "Dominadas" },
+    { "name": "Fondos en paralelas" },
+    { "name": "Curl de bíceps con barra" },
+    { "name": "Curl de bíceps con mancuernas" },
+    { "name": "Prensa de hombros" },
+    { "name": "Remo con barra" },
+    { "name": "Remo con mancuernas" },
+    { "name": "Elevaciones laterales" },
+    { "name": "Patada de tríceps" },
+    { "name": "Flexiones de pecho" },
+    { "name": "Elevaciones de gemelos" },
+    { "name": "Plancha" },
+    { "name": "Abdominales" },
+    { "name": "Sentadillas búlgaras" },
+    { "name": "Peso muerto rumano" },
+    { "name": "Zancadas" },
+    { "name": "Hip Thrust" },
+    { "name": "Burpees" },
+    { "name": "Mountain climbers" },
+    { "name": "Flexiones diamante" },
+    { "name": "Flexiones de tríceps" },
+    { "name": "Flexiones inclinadas" }
+]
