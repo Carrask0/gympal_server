@@ -10,10 +10,10 @@ class Service {
 
     async populateDB(){
 
-        //DROP ALL DATA
-        this.mongoDB.delete('exercises', {});
-        this.mongoDB.delete('exercise_stats', {});
-        this.mongoDB.delete('sessions', {});
+        //Delete all collections
+        this.mongoDB.dropCollection('exercises');
+        this.mongoDB.dropCollection('exercise_stats');
+        this.mongoDB.dropCollection('sessions');
 
         //ADD MOCK DATA
         let exercises = [ "Press de banca", "Sentadillas", "Peso muerto", "Dominadas", "Fondos en paralelas", "Curl de bíceps con barra", "Curl de bíceps con mancuernas", "Prensa de hombros", "Remo con barra", "Remo con mancuernas", "Elevaciones laterales", "Patada de tríceps", "Flexiones de pecho", "Elevaciones de gemelos", "Plancha", "Abdominales", "Sentadillas búlgaras", "Peso muerto rumano", "Zancadas", "Hip Thrust", "Burpees", "Mountain climbers", "Flexiones diamante", "Flexiones de tríceps", "Flexiones inclinadas" ];
@@ -42,8 +42,11 @@ class Service {
             let exerciseLogs = [];
 
             for (let j = 0; j < 5; j++) {
+                //Save a random exercise name and id
+                const exercise = exercises[Math.floor(Math.random() * exercises.length)];
                 exerciseLogs.push({
-                    exerciseId: exercises[Math.floor(Math.random() * exercises.length)]._id,
+                    exerciseId: exercise._id,
+                    name: exercise.name,
                     kgs: Math.floor(Math.random() * 100) + 1,
                     reps: Math.floor(Math.random() * 20) + 1,
                     sets: Math.floor(Math.random() * 10) + 1,

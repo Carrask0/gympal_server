@@ -11,9 +11,11 @@ function gympalAPI(app) {
         try {
             const exercises = await service.getAll('exercises');
             if (exercises.length === 0) {
-                res.status(404).json({ error: 'Exercises not found' });
+                console.log("No exercises found");
+                res.status(404).json({ error: 'Exercises not found' }).sucess(true);
             } else {
-                res.status(200).json(exercises);
+                console.log("Exercises found");
+                res.status(200).json({success: true, exercises});
             }
         } catch (error) {
             console.error(error);
@@ -25,9 +27,11 @@ function gympalAPI(app) {
         try {
             const exercise = await service.get('exercises', req.params.id);
             if (exercise === null) {
+                console.log("Exercise not found");
                 res.status(404).json({ error: 'Exercise not found' });
             } else {
-                res.status(200).json(exercise);
+                console.log("Exercise found");
+                res.status(200).json({success: true, exercise});
             }
         } catch (error) {
             console.error(error);
@@ -41,9 +45,11 @@ function gympalAPI(app) {
         try {
             const exerciseStats = await service.getAll('exercise_stats');
             if (exerciseStats.length === 0) {
+                console.log("No exercise stats found");
                 res.status(404).json({ error: 'Exercise stats not found' });
             } else {
-                res.status(200).json(exerciseStats);
+                console.log("Exercise stats found");
+                res.status(200).json({success: true, exerciseStats});
             }
         } catch (error) {
             console.error(error);
@@ -57,7 +63,7 @@ function gympalAPI(app) {
             if (exerciseStat === null) {
                 res.status(404).json({ error: 'Exercise stat not found' });
             } else {
-                res.status(200).json(exerciseStat);
+                res.status(200).json({success: true, exerciseStat});
             }
         } catch (error) {
             console.error(error);
@@ -72,7 +78,7 @@ function gympalAPI(app) {
             if (sessions.length === 0) {
                 res.status(404).json({ error: 'Sessions not found' });
             } else {
-                res.status(200).json(sessions);
+                res.status(200).json({success: true, sessions});
             }
         } catch (error) {
             console.error(error);
@@ -86,7 +92,7 @@ function gympalAPI(app) {
             if (session === null) {
                 res.status(404).json({ error: 'Session not found' });
             } else {
-                res.status(200).json(session);
+                res.status(200).json({success: true, session});
             }
         } catch (error) {
             console.error(error);
@@ -98,7 +104,7 @@ function gympalAPI(app) {
         try {
             const session = req.body;
             await service.create('sessions', session);
-            res.status(201).json(session);
+            res.status(201).json({success: true, session});
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Error creating session' });
@@ -109,7 +115,7 @@ function gympalAPI(app) {
         try {
             const session = req.body;
             await service.update('sessions', req.params.id, session);
-            res.status(200).json(session);
+            res.status(200).json({success: true, session});
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Error updating session' });
