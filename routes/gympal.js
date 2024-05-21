@@ -8,7 +8,7 @@ function gympalAPI(app) {
     const service = new Service();
 
     // GET ALL EXERCISES
-    app.get('/exercises', async (req, res) => {
+    app.get('/api/exercises', async (req, res) => {
         try {
             const exercises = await service.getAll('exercises');
             if (exercises.length === 0) {
@@ -22,7 +22,7 @@ function gympalAPI(app) {
     });
 
     // GET EXERCISE BY ID
-    app.get('/exercises/:id', async (req, res) => {
+    app.get('/api/exercises/:id', async (req, res) => {
         try {
             const exercise = await service.get('exercises', { _id: new ObjectId(req.params.id) });
             if (exercise === null) {
@@ -36,7 +36,7 @@ function gympalAPI(app) {
     });
  
     // GET ALL SESSIONS
-    app.get('/sessions', async (req, res) => {
+    app.get('/api/sessions', async (req, res) => {
         try {
             const sessions = await service.getAll('sessions');
             if (sessions.length === 0) {
@@ -51,7 +51,7 @@ function gympalAPI(app) {
     });
 
     // GET SESSION BY ID
-    app.get('/sessions/:id', async (req, res) => {
+    app.get('/api/sessions/:id', async (req, res) => {
         try {
             console.log("Fetching session with id: ", req.params.id)
             const session = await service.get('sessions', { _id: new ObjectId(req.params.id) });
@@ -67,13 +67,16 @@ function gympalAPI(app) {
     });
 
     // CREATE SESSION
-    app.post('/sessions', async (req, res) => {
+    app.post('/api/sessions', async (req, res) => {
+        console.log("Creating session");
+        console.log(req.body)
         try {
-            const session = req.body;
+            const data = req.body;
             // Extract the fields from the data object, excluding _id
-            const { _id, ...updateData } = data;
-            await service.create('sessions', updateData);
-            res.status(201).json({success: true, session});
+            const { _id, ...updatedData } = data;
+            console.log(updatedData)
+            await service.create('sessions', updatedData);
+            res.status(201).json({success: true, updatedData});
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Error creating session' });
@@ -81,7 +84,7 @@ function gympalAPI(app) {
     });
 
     // UPDATE SESSION
-    app.put('/sessions/:id', async (req, res) => {
+    app.put('/api/sessions/:id', async (req, res) => {
         try {
             const session = req.body;
             // Extract the fields from the data object, excluding _id
